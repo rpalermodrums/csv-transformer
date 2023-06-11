@@ -1,0 +1,4 @@
+docutils==0.19
+PyYAML==6.0
+six==1.16.0
+youtube-dl==2021.12.17
