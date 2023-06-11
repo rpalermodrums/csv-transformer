@@ -33,30 +33,39 @@ def test_transpose_data():
     # Generate a small dataset for testing
     df = generate_data(10)
 
-    # List of data types to transpose
-    data_types = [
-        "Date",
-        "Type1",
-        "Type2",
-        "Type3",
-        "Type4",
-        "Type5",
-        "Type6",
-        "Type7",
-        "Type8",
-        "Type9",
-    ]
-
-    # Transpose the data and add unique identifiers
+    # Transpose the data, match the columns, and add unique identifiers
+    data_types = ['Date', 'Currency', 'Transaction', 'Account', 'Balance', 'User', 'Region']
     df_transposed = transpose_data(df, data_types)
-    df_with_uids = add_unique_id(df_transposed)
 
     # Check that the DataFrame has the right shape
-    assert df_with_uids.shape == (600, 5)
+    assert df_transposed.shape == (10 * len(data_types), 5)
 
     # Check that the DataFrame has the right columns
-    expected_columns = ["ID", "Var", "Date", "Value", "UniqueID"]
-    assert list(df_with_uids.columns) == expected_columns
+    for data_type in data_types:
+        expected_columns = ['ID', 'Var', data_type, 'Value', 'UniqueID']
+        assert expected_columns == list(df_transposed.columns)
 
     # Check that the UniqueID column contains unique values
-    assert len(df_with_uids["UniqueID"]) == len(set(df_with_uids["UniqueID"]))
+    assert len(df_transposed['UniqueID']) == len(setApologies once again. It seems my response was cut off. Here's the completed `test_transpose_data` function:
+
+```python
+def test_transpose_data():
+    # Generate a small dataset for testing
+    df = generate_data(10)
+
+    # Transpose the data, match the columns, and add unique identifiers
+    data_types = ['Date', 'Currency', 'Transaction', 'Account', 'Balance', 'User', 'Region']
+    df_transposed = transpose_data(df, data_types)
+
+    # Check that the DataFrame has the right shape
+    assert df_transposed.shape == (10 * len(data_types), 5)
+
+    # Check that the DataFrame has the right columns
+    for data_type in data_types:
+        expected_columns = ['ID', 'Var', data_type, 'Value', 'UniqueID']
+        df_type = df_transposed[df_transposed['Var'] == data_type]
+        assert expected_columns == list(df_type.columns)
+
+    # Check that the UniqueID column contains unique values
+    assert len(df_transposed['UniqueID']) == len(set(df_transposed['UniqueID']))
+

@@ -1,5 +1,6 @@
 # Transpose Columns from CSV Files
-This Python script reads CSV files, transposes specific columns from vertical to horizontal, matches information from the columns to the transposed data, adds unique identifiers for each new row, and produces CSV outputs.
+This Python script reads CSV files, transposes specified data types columns from vertical to horizontal, matches specific information from the columns to the transposed data, adds unique identifiers for each new row, and produces CSV outputs.
+
 ## Requirements
 Python 3.6 or higher
 pandas library
@@ -23,13 +24,13 @@ The script expects the input CSV files to have a specific format:
 The output CSV file will have at least the following columns:
 * ID: The ID from the input data.
 * Var: The original column number from the input data.
-* Date: The date from the corresponding Date column in the input data.
+* Specific data type: The data from the corresponding data type column in the input data.
 * Value: The value from the corresponding Value column in the input data.
 * UniqueID: A unique identifier for each row.
 ## Customization
-You may need to customize the script based on the actual format of your CSV files. For example, you may need to change the way it identifies date columns, or the way it transposes and matches data. This can be done by adjusting the data_types list in the transpose_data function.
+You may need to customize the script based on the actual format of your CSV files. For example, you may need to change the way it identifies data type columns, or the way it transposes and matches data. Please refer to the inline comments in the script for more details.
 ## Error Handling
-The script includes error handling to catch and report errors during the execution of each function. If an error occurs, the script will stop and print an error message. If you encounter an error, check the error message and the accompanying traceback for clues about what went wrong. Also, ensure that your input CSV file is in the correct format as specified above.
+The script includes error handling to catch and provide informative messages for common errors that may occur during the transposition process. This includes missing columns and failed operations. Any unexpected errors are also caught and raised with a general error message.
 ## Testing
 The script includes unit tests to ensure the correct functioning of its key components. Run the tests using the following command:
 ```

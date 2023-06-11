@@ -16,7 +16,6 @@ def read_csv(filename: str) -> pd.DataFrame:
         raise Exception("Error while reading CSV file: " + str(e))
     return df
 
-
 def transpose_data(df: pd.DataFrame, data_types: List[str]) -> pd.DataFrame:
     """
     This function transposes the data in the DataFrame.
@@ -54,10 +53,13 @@ def transpose_data(df: pd.DataFrame, data_types: List[str]) -> pd.DataFrame:
                 if data_type == data_types[0]
                 else pd.merge(df, df_melted, on=["ID", "Var", "Value"])
             )
+    except KeyError as e:
+        raise KeyError("Error during transposition: The DataFrame does not contain the expected columns.") from e
+    except ValueError as e:
+        raise ValueError("Error during transposition: The 'melt' or 'merge' operation failed.") from e
     except Exception as e:
-        raise Exception("Error while transposing data: " + str(e))
+        raise Exception("Unexpected error during transposition: " + str(e)) from e
     return df
-
 
 def add_unique_id(df: pd.DataFrame) -> pd.DataFrame:
     """
