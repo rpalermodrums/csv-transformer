@@ -65,3 +65,5 @@ coverage.xml
 ehthumbs.db
 Thumbs.db
 
+# Docker
+docker-compose.override.yml

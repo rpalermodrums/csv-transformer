@@ -1,0 +1,10 @@
+version: '3'
+services:
+  csv-transformer:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8080:80"
+    environment:
+      - PYTHONUNBUFFERED=1
